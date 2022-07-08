@@ -1,0 +1,2 @@
+<%= ajax_flash('#top-div') %>
+$("#restaurant").html("<%= j render :partial => 'restaurants/index', locals: {restaurants: @restaurants } %>")

@@ -1,0 +1,33 @@
+S
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+     <p style="font-weight: bold; color:white;">Myproject</p> 
+  <div class="container-fluid">
+    <form class="d-flex">
+      <% if user_signed_in? %>
+        <%= button_to "sign_out", destroy_user_session_path, method: :delete, class:"btn btn-light btn-sm" %>
+      <% else %>
+        <%= link_to "sign_in", new_user_session_path, class:"btn btn-light btn-sm" %>
+      <% end %> 
+
+      <% if current_user.profile_pic.attached? %>
+      <div class="dropdown">
+        <%= link_to class:"btn btn-secondary dropdown-toggle", id:"dropdownMenuButton1", data: {"bs-toggle":"dropdown"} do %> 
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+           <%= image_tag current_user.profile_pic, style:"height:70px; width:70px;", class:"img-fluid rounded-circle border border-dark border-3" %> 
+           <% end %> 
+      </div>
+      <% else %>
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp"
+          alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
+          style="width: 70px;">
+      <% end %>
+      
+   </form>
+  </div>
+</nav> 
+<br>
+  

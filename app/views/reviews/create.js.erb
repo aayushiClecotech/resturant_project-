@@ -1,0 +1,5 @@
+$("#show-reviews").append("<%= j render :partial => 'show', locals: { review: @review } %>")
+$('#review_title').val('')
+$('#review_description').val('')
+$('#restaurant-rating<%= @restaurant.id %>').html(<%= @restaurant.reviews.count %>)
+$('#myModal').modal('hide');

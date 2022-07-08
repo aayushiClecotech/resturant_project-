@@ -1,0 +1,80 @@
+
+
+<% if user_signed_in? %>
+  <div class="navbar">
+    <%= image_tag "navbar.webp" , style:"height:300px; width:100%; margin-top: 0px;" %>
+    
+   <div class="top-left" style="color:orange; font-family: Jazz LET, fantasy ;">Cleco</div> 
+   <div class="top-left" style="color:white; font-family: Jazz LET, fantasy ;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Restaurants</div> 
+    
+    <div class="centered">
+      <%= link_to root_path do %>
+        <%= image_tag "loho-removebg-preview.png", style:"height:200px; width:200px;" %>
+      <% end %> 
+        <!-- <div class="form-container">
+          <span class="glyphicon glyphicon-search"> </span>
+          <input type="search" placeholder="Search..."data-behavior="autocomplete" class="form-control">
+        </div> -->
+    </div>
+
+      <div class="top-right">
+        <div class="dropdown"> 
+          <% if current_user.image.attached? %>
+            <%= link_to "#",class:"dropdown-toggle", id:"dropdownMenuButton1", data:{"bs-toggle": "dropdown"} do %> 
+              <%= image_tag current_user.image, style:"height:50px; width:50px;", class:"img-fluid rounded-circle border border-light border-1" %> 
+             <span style="font-weight:bold; color:orange;"><%= current_user.name %></span>
+            <% end %>
+          
+          <% else %>
+             <%= link_to "#",class:"dropdown-toggle", id:"dropdownMenuButton1", data:{"bs-toggle": "dropdown"} do %> 
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp"
+                alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
+                style="width: 50px;">
+                <span style="font-weight:bold; color:white;"><%= current_user.email %></span>
+            <% end %>
+          <% end %>
+            
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <% if current_user.stripe_id.present? %>
+              <% if can? :manage , Restaurant %>
+                <% if current_user.is_subscribed == true %>
+                  <li class="dropdown-item"><%= link_to "My Restaurants", restaurants_index_path %></li>
+                <% end %>
+              <% end %>
+                <% else %> 
+                <li class="dropdown-item"><%= link_to "Subscribe", success_path %></li>
+            <% end %>
+              
+             
+              <li class="dropdown-item"><%= link_to "Edit user profile", edit_user_registration_path %></li>
+              <li class="dropdown-item"><%= link_to "Log_out", destroy_user_session_path, method: :delete, class:"link-danger" %></li> 
+            </ul>
+        </div>
+      </div> 
+  </div>
+      
+    <% else %>
+      <div class="navbar">
+        <%= image_tag "1157a04af1c89ee.jpg" , style:"height:350px; width:100%; margin-top: 0px;" %>
+        <div class="top-right">
+          <%= link_to "Sign In", new_user_session_path, class: "link-light", style:"margin-right: 30px;" %>
+          <%= link_to "Sign up",  new_user_registration_path , class: "link-light" %>
+        </div>
+        
+          <%= form_tag home_search_path , :method => :get do %>
+          <%#= form_field_tag :search, params[:search] %>
+          <div id="top-left">
+            <div class="row">
+              <div class="col-10">
+                <span id="search-field" class="glyphicon glyphicon-search"></span>
+                <input type="search" name="search" placeholder="Search..." data-behavior="autocomplete" class= "form-control" value ="<%= params[:search] %>" class="glyphicon glyphicon-search" style="height: 48px;">
+              </div>  
+              <div class="col-2">
+                <%= submit_tag "Search", class:"btn btn-light btn-lg"%>
+              </div>
+            </div>
+          </div>
+      </div>
+      <% end %>
+<% end %> 
+

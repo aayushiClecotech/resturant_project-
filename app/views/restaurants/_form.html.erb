@@ -1,0 +1,52 @@
+
+<div class="container">
+<%= form_for @restaurant, remote: true do |form| %>
+<div class="mb-3">
+	  <%=form.label :name , class:"form-label" %>
+	  <%= form.text_field :name ,class:"form-control" %>
+	</div>
+
+	<div class="mb-3">
+  		<%=form.label :Description, class:"form-label" %>
+		<%= form.text_field :Description ,class:"form-control" %>
+	</div>
+
+
+	<div class="mb-3">
+		<% if @restaurant.image.attached? %>
+      		<%= image_tag @restaurant.image , style:"height: 50px; width:50px;" %>
+    	<% end %>
+  		<%=form.label :image , class:"form-label" %>
+		<%= form.file_field :image ,class:"form-control"%>
+	</div>
+
+	<div class="mb-3">
+  		<%=form.label :email, class:"form-label" %>
+		<%= form.email_field :email ,class:"form-control" %>
+	</div>
+
+	<div class="mb-3">
+  		<%=form.label :contact_number, class:"form-label" %>
+		<%= form.text_field :contact_number ,class:"form-control" %>
+	</div> 
+
+	<div class="mb-3">
+  		<%=form.label :full_address, class:"form-label" %>
+		<%= form.text_field :full_address ,class:"form-control" %>
+	</div> 
+
+	<div class="mb-3">
+		<%=form.label :images , class:"form-label" %>
+		<%= form.file_field :images ,class:"form-control", multiple: true %>
+	</div>
+
+	<div class="mb-3">
+		<%=form.label :videos , class:"form-label" %>
+		<%= form.file_field :videos ,class:"form-control", multiple: true %>
+	</div>
+
+	<div class="mb-3">
+		<%= form.submit  %>
+	</div> 
+<% end %>
+</div>

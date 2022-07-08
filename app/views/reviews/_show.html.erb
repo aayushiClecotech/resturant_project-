@@ -1,0 +1,30 @@
+<% if review.title.present? %>
+ <% if review.user.image.attached? %>
+    <%= image_tag review.user.image, style:"height:50px; width:50px;", class:"img-fluid rounded-circle  border border-light border-1" %> 
+  <% else %>
+		<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp"
+          alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
+          style="width: 50px;">
+  <% end %> 
+  <span style="font-weight:bold; font-size:18px;"><%= review.user.name %></span><br>
+    <%= review.title %><br>
+    <%= review.description %><br>
+    
+    <% review.rating.to_i.times do  %>
+      <% if review.rating.to_i > 4 %>
+        <span class="glyphicon glyphicon-star" style="color:green;" aria-hidden="true"></span>
+      <% elsif review.rating.to_i > 2 %>
+        <span class="glyphicon glyphicon-star" style="color:orange;"  aria-hidden="true"></span>
+      <% else %>
+        <span class="glyphicon glyphicon-star" style="color:red;" aria-hidden="true"></span>
+      <% end %>
+    <% end %>
+    <br>
+    
+    <% if review.user_id == current_user.id %>
+      <%= link_to "Delete" , restaurant_review_path( @restaurant , review.id), method: :delete, remote: true, class:"btn btn-danger btn-sm"   %>
+    <% end %>
+
+    <hr style="margin-bottom:0px; margin-top: 0px;"> 
+<% end %> 
+

@@ -1,0 +1,41 @@
+
+<% @restaurants.each do |restaurant| %>
+	 	<div id="restaurant<%= restaurant.id %>">
+		  <div class="card" style="border-radius: 20px;">
+		    <span class="image">
+			    <% if restaurant.image.attached? %>
+			    	<%= image_tag restaurant.image, style:"height:250px; width:330px; border-radius: 20px;" %>
+					<% end %>
+				</span>
+	 			<div class="card-body">
+		      <div class="card-title">
+		      	<div class="row">
+		      		<div class="col-10">
+			      		<b style="font-size:18px;"><%= link_to restaurant.name , restaurant , class:"link-dark" %></b>
+			      		<br><span style="font-size:14px;"><%= restaurant.Description %></span>
+			      		<br><span style="font-size:14px;"><%= restaurant.full_address %></span>
+
+				      </div>
+					    <div class="col-2">
+					    	<% if restaurant.reviews.present?%>
+						    	<%# reviews = restaurant.reviews.pluck(:rating).sum %>
+						    	<%# average = reviews/restaurant.reviews.count %>
+									
+									<div style="height:20px; width: 50px; float: right; background-color: darkgreen; border-radius: 5px; margin-top: 0px;">
+					     			<span style="color:white; margin-left: 2px;"><%=restaurant.reviews.average(:rating)%></span>
+					     			<span class="glyphicon glyphicon-star" style="color:white; "></span>
+					     		</div>
+					     	<% else %>
+					     		<div style="height:20px; width: 30px; float: right; background-color: darkgreen; border-radius: 5px; margin-top: 0px;">
+					     			<span style="color:white; margin-left: 2px;"><%= restaurant.reviews.count %></span>
+					     			<span class="glyphicon glyphicon-star" style="color:white; "></span>
+					     		</div>
+					     	<% end %>
+					    </div>
+				    </div>
+		      </div>
+				</div>
+			</div>	
+		</div> 
+	</div>
+<% end %>

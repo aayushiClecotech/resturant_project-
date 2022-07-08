@@ -1,0 +1,63 @@
+<section style="background-color: whitesmoke;">
+  <div class="container1">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div id="card text-black" style="border-radius: 25px; background-color:whitesmoke;">
+              <%#= image_tag "background signup.jpg", style:"border-radius: 20px; width:100%" %>
+          <div class="card-body p-md-5 ">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+
+
+                <form class="mx-1 mx-md-4">
+                <label class="form-label" for="form3Example3c">Name</label>
+                      <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %><br>
+
+                      <label class="form-label" for="form3Example3c">Your Email</label>
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %><br> 
+                      
+                      <label class="form-label" for="form3Example3c">Contact Number</label>
+                      <%= f.text_field :contact_number, autofocus: true, autocomplete: "contact_number",class:"form-control" %><br>
+                      
+                      <label class="form-label" for="form3Example3c">Image</label>
+                      <%= f.file_field :image, autofocus: true, autocomplete: "image",class:"form-control"  %><br>
+
+                      <label class="form-label" for="form3Example4c">Password</label>
+                      <% if @minimum_password_length %>
+                          <em>(<%= @minimum_password_length %> characters minimum)</em>
+                        <% end %><br />
+                        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %><br>
+
+                      <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form-control"%><br>
+                      
+                      <label class="form-label" for="form3Example4cd">Add role</label>
+               
+                        <%= f.select(:roles, options_for_select(["restaurant_owner", "normal_user"] ), {}, {:class => 'form-control'})  %>
+
+                      <br>
+                      <div class="wrapper1">
+                        <%= f.submit "Sign up" , class:"btn btn-info"%>
+                      </div>
+                </form>
+                  <% end %>
+                    <br>
+                  <%= render "devise/shared/links"%>
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                
+            <%= image_tag "pngaaa.com-350089.png", class:"img-fluid" ,style:"height:600px;"%>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+

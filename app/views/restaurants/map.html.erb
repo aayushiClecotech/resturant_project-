@@ -1,0 +1,58 @@
+<div class="map" style="height: 200px; width:300px">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198068.46253439834!2d75.7209566773854!3d22.714052181174715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fcad1b410ddb%3A0x96ec4da356240f4!2sIndore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1656578792300!5m2!1sen!2sin" width="800" height="450" style="border:0; margin-top: 20px; margin-left: 150px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div> 
+<!-- <script type="text/javascript">
+	function initMap() {
+  const coords = document.getElementById("breweries");
+  const city = {
+    lat: coords.getAttribute("data-latitude"),
+    lng: coords.getAttribute("data-longitude")
+  };
+  
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 10,
+    center: city
+  });
+  
+  const breweries = document.querySelectorAll("li.brewery-list-item");
+  breweries.forEach(brewery => {
+    const marker = new google.maps.Marker({
+      position: {
+        lat: brewery.getAttribute("data-latitude"),
+        lng: brewery.getAttribute("data-longitude")
+      },
+      map: map
+    });
+  }
+}
+                    
+window.initMap = initMap;
+
+</script>
+<div class="map-container">
+  <div 
+    id="breweries"
+    data-latitude=<%#= @restaurants.latitude %>
+    data-longitude=<%#= @restaurants.longitude %>
+  >
+    <h2>Breweries in <%#= @restaurants.name %></h2>
+    <ol>
+      <%# @breweries.each do |brewery| %>
+        <li
+          class="brewery-list-item"
+          data-latitude=<%#= brewery.latitude %>
+          data-longitude=<%#= brewery.longitude %>
+        >
+          <h4><%#= brewery.name %></h4>
+          <p><%#= brewery.address %></p>
+        </li>
+      <%# end %>
+    </ol>
+  </div>
+  <div id="map"></div>
+</div>
+<%#= javascript_pack_tag 'map' %>
+<%#= 
+    javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap",
+    defer: true
+%> -->

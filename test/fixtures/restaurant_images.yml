@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_image: MyString
+  restaurant: one
+
+two:
+  restaurant_image: MyString
+  restaurant: two
