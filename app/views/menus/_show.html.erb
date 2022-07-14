@@ -1,0 +1,10 @@
+<% @restaurant.menus.each do |menu| %>
+<% menu.images.first(1).each do |image| %>
+        <% if menu.images.attached? %>
+        <%#= link_to restaurant_menu_path(@restaurant, menu.id),class:"dropdown-toggle", id:"dropdownMenuButton1", data:{"bs-toggle": "dropdown"} do %> 
+          <%= link_to restaurant_menu_path(@restaurant, menu.id) do %>
+            <%= image_tag image, style:"height: 100px; width: 200px;" %>
+          <% end %>
+        <% end %>
+    <% end %>
+<% end %>

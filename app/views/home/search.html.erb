@@ -1,14 +1,14 @@
 
 <% @restaurants.each do |restaurant| %>
 	 	<div id="restaurant<%= restaurant.id %>">
-		  <div class="card" style="border-radius: 20px;">
+		  <div class="card1" style="border-radius: 20px;">
 		    <span class="image">
 			    <% if restaurant.image.attached? %>
-			    	<%= image_tag restaurant.image, style:"height:250px; width:330px; border-radius: 20px;" %>
+			    	<%= image_tag restaurant.image, style:"height:250px; width:250px; border-radius: 20px;" %>
 					<% end %>
 				</span>
-	 			<div class="card-body">
-		      <div class="card-title">
+	 			<div class="card1-body">
+		      <div class="card1-title">
 		      	<div class="row">
 		      		<div class="col-10">
 			      		<b style="font-size:18px;"><%= link_to restaurant.name , restaurant , class:"link-dark" %></b>
@@ -20,13 +20,14 @@
 					    	<% if restaurant.reviews.present?%>
 						    	<%# reviews = restaurant.reviews.pluck(:rating).sum %>
 						    	<%# average = reviews/restaurant.reviews.count %>
-									
-									<div style="height:20px; width: 50px; float: right; background-color: darkgreen; border-radius: 5px; margin-top: 0px;">
-					     			<span style="color:white; margin-left: 2px;"><%=restaurant.reviews.average(:rating)%></span>
-					     			<span class="glyphicon glyphicon-star" style="color:white; "></span>
-					     		</div>
+									<div class="review-box">
+										<div style="height:20px; width: 50px; float: right; background-color: darkgreen; border-radius: 5px; margin-top: 0px;">
+						     			<span style="color:white; margin-left: 2px;"><%=restaurant.reviews.average(:rating)%></span>
+						     			<span class="glyphicon glyphicon-star" style="color:white; "></span>
+						     		</div>
+						     	</div>
 					     	<% else %>
-					     		<div style="height:20px; width: 30px; float: right; background-color: darkgreen; border-radius: 5px; margin-top: 0px;">
+					     		<div class="review-box1">
 					     			<span style="color:white; margin-left: 2px;"><%= restaurant.reviews.count %></span>
 					     			<span class="glyphicon glyphicon-star" style="color:white; "></span>
 					     		</div>

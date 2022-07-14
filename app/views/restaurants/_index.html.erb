@@ -9,24 +9,30 @@
 						</div>
 						<div class="col-6" style="margin-top: 20px;">
 				      	<%= link_to restaurant.name , restaurant , class:"link-danger" %>
-								<br><span style="font-size:18px; "><%= restaurant.full_address %></span>
-
+									<br><span style="font-size:14px; "><%= restaurant.categories.pluck(:name).to_sentence %></span>
 				    </div>
 			    
 			    	<div class="col-4" style="margin-top:30px;"> 
-			    			
 			    			<div class="row">
-				    			
 				    			<div class="col-2">
-									<button><%= link_to edit_restaurant_path(restaurant) , remote: true do %>		<span class="glyphicon glyphicon-edit"  style="color:orange;"></span>
-										<% end %> 
+										<button class="button button1"><%= link_to edit_restaurant_path(restaurant) , remote: true do %>
+											<span class="glyphicon glyphicon-edit"  style="color:orange; width: 30px;"></span>
+												<% end %> 
 										</button>
 									</div>
 									
-									<div class="col-6">
-									<%= button_to restaurant_path(restaurant),method: :delete, remote: true do %>
-										<span class="glyphicon glyphicon-trash" style="color:orange;"></span>
-										<% end %>
+									<div class="col-2">
+										<button class="button button1"><%= link_to restaurant_path(restaurant),method: :delete, remote: true do %>
+											<span class="glyphicon glyphicon-trash" style="color:orange; width: 30px;"></span>
+											<% end %>
+										</button> 
+									</div>
+
+										<div class="col-2">
+											<button class="button button1"><%= link_to  restaurant_menus_path(restaurant) do %>
+												<span class="glyphicon glyphicon-pencil" style="color:orange; width: 30px;"></span>
+											<% end %>
+										</button>
 									</div>
 								</div>
 			    	</div>

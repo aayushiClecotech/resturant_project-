@@ -4,7 +4,10 @@ class Restaurant < ApplicationRecord
 	#has_many :restaurant_images, dependent: :destroy
 	has_many_attached :images
 	has_many_attached :videos
+	has_many :menus, dependent: :destroy
+
 	has_many :reviews , dependent: :destroy 
+	validates :email , presence: true
 
 	searchable do
 	   	 text :name 
@@ -12,6 +15,8 @@ class Restaurant < ApplicationRecord
 	   	 text :Description
 	end
 
+	has_many :restaurant_categories, dependent: :destroy
+	has_many :categories, through: :restaurant_categories
 
 	#accepts_nested_attributes_for :restaurant_images
 end

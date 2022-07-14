@@ -1,0 +1,20 @@
+<% @restaurant.menus.each do |menu| %>
+  <% menu.images.each do |image| %>
+    <% if menu.images.attached? %>
+      <%= image_tag image, style:"height: 300px; width: 200px; margin-left: 10px; margin-bottom: 10px;" %>
+    <% end %>
+  <% end %>
+<% end %>
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+

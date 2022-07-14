@@ -1,0 +1,13 @@
+<% @restaurant.images.last(4).each do |image| %>
+	<div class="col-6"> 
+		<div class="show-image">
+			<%# debugger %>
+				<% if @restaurant.images.attached? %>
+						<%= link_to restaurant_image_path(@restaurant), remote: true do %>
+							<%= image_tag image, style:"height:200px; width:100%; margin-left:5px; margin-bottom:5px; margin-top:10px;" %>
+						<% end %>
+			<%# elsif %>
+				<% end %>
+		</div>
+	</div>
+<% end %>	

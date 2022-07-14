@@ -8,10 +8,11 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import '../js/bootstrap_js_files.js' 
+import "../js/restaurants.js"
 require("jquery")
-// require("easy-autocomplete")
-// import "packs/restaurants"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "controllers"

@@ -1,0 +1,104 @@
+
+<div id="restaurant<%= @restaurant.id %>">
+	<div class="container">
+		<div class="row">		 
+			<div class="col-8">  	
+				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+			  	<div class="carousel-inner">
+			    	<% @restaurant.images.each_with_index do |image, index| %>
+								<% if index == 0 %>
+				    			<div class="carousel-item active">
+										<% if @restaurant.images.attached? %>
+											<%= image_tag image, style:"height:410px; width:600px; margin-left:5px; margin-bottom:5px; margin-top:10px;" , class:"d-block w-100" %>
+										<% end %>
+									</div>
+								<% else %>
+									<div class="carousel-item"> 
+											<%= image_tag image, style:"height:410px; width:600px; margin-left:5px; margin-bottom:5px; margin-top:10px" , class:"d-block w-100" %>
+										
+									</div>
+							<% end %>
+						<% end %>
+
+						<% @restaurant.videos.each_with_index do |video, index| %>
+							<% if index == 0  && @restaurant.images.blank? %>
+								<% if @restaurant.videos.attached? %>
+							    <div class="carousel-item active">
+										<%= video_tag url_for(video), style:"height:410px; width:600px margin-left:5px; margin-top:10px", class:"d-block w-100" ,controls: true %>
+									</div>
+								<% end %>
+							<% else %>
+								<div class="carousel-item">
+										<%= video_tag url_for(video), style:"height:410px; width:250px margin-left:5px; margin-top:10px", class:"d-block w-100",controls: true %> 
+								</div>
+							<% end %>
+						<% end %><br>
+					</div> 
+
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Previous</span>
+			  	</button>
+			  	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Next</span>
+			  	</button>
+				</div>
+			</div> 
+
+			<div class="col-4">
+				<div class="row">
+					<% @restaurant.images.last(4).each do |image| %>
+						<div class="col-6"> 
+							<div class="show-image">
+									<% if @restaurant.images.attached? %>
+										<div id="show-image1">
+											<%#= render :partial => 'show', locals: { image: image }  %>
+											<%= link_to restaurant_image_path(image) do %>
+												<%= image_tag image, style:"height:200px; width:100%; margin-left:5px; margin-bottom:5px; margin-top:10px;" %>
+											<% end %>
+
+										</div>
+									<% else %>
+											<div id="show-image1">
+											<%#= render :partial => 'show', locals: { image: image }  %>
+											</div>
+									<% end %>
+							</div>
+						</div>
+					<% end %>	
+				</div>
+			</div>
+		</div>
+			
+			<% if @restaurant.image.attached? %>
+				<%= image_tag @restaurant.image, style:"height:70px; width:70px; margin-left:5px;", class:"img-fluid rounded-circle border border-dark border-2" %>
+			<% end %>
+			
+			<b style="font-size: 30px;"><%= @restaurant.name %></b><br>
+			<b>full_address :</b><%= @restaurant.full_address %></b><br>
+			<b>Description :</b><%= @restaurant.Description %><br>
+			<b>Email :</b><%= @restaurant.email %><br>
+			<b>Contact_number :</b><%= @restaurant.contact_number %><br>
+			<b>Full_address :</b><%= @restaurant.full_address %><br>
+			
+			<%= link_to "Direction", restaurant_map_path(@restaurant), class:"btn btn-danger btn-lg glyphicon glyphicon-share-alt" %>
+			
+  		<%= link_to "Add Review", "#" , class:"btn btn-danger btn-lg glyphicon glyphicon-star-empty", data: {"toggle": "modal" ,"target": "#myModal"} %>
+
+			<br><br>
+			<%= link_to "Overview" , restaurant_overview_path(@restaurant),class:"link-dark", style:"font-weight:bold; font-size:22px;" %>
+			<hr style="border-top: 2px solid rgb(207, 207, 207); margin-bottom: 0px;">
+				
+			<h3>Restaurant Reviews</h3>
+			<div id="show-reviews">
+				<% @restaurant.reviews.each do |review| %>
+					<div id="show-reviews<%= review.id %>">
+						<%= render :partial => 'reviews/show', locals: {review: review} %>
+					</div><br>
+				<% end %>
+			</div> 
+	</div>
+</div>
+<%= render "reviews/index" %>
+

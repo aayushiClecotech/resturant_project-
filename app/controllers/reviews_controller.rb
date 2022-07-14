@@ -1,5 +1,11 @@
 class ReviewsController < ApplicationController
   def index
+     @restaurant = Restaurant.find(params[:restaurant_id])
+     @reviews = Review.all
+      respond_to do |format|
+        format.js{}
+      end
+    # @review.user_id = current_user.id
   end 
 
   def show

@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="row">
+		<% @restaurant.images.each do |image| %>
+			<div class="col-4" style="width: 19%"> 
+				<% if @restaurant.images.attached? %>
+				<div class="all-image">
+					<%= image_tag image, style:"height:200px; width:200px; margin-bottom:10px; border-radius: 10px;" %>
+				</div>
+				<% end %>
+			</div>
+		<% end %>	
+	</div>
+</div>

@@ -1,6 +1,5 @@
 class RestaurantsController < ApplicationController
-   before_action :force_json, only: :search  
-
+  before_action :force_json, only: :search  
   load_and_authorize_resource
   
   def index 
@@ -21,15 +20,13 @@ class RestaurantsController < ApplicationController
 
       respond_to do |format|
         format.js do 
-          if @restaurant.save
-              #if params[:images].present? 
-                #@restaurant.images.attach(params[:images])
-                #params[:restaurant][:images].each do |img|
-                  @restaurants = current_user.restaurants
-
-                  #@restaurant.images.create(images)
-                #end
-            #end 
+          if @restaurant.save 
+            params[:restaurant][:category_ids].each do |category|
+              if category.present?
+                @restaurant.restaurant_categories.create(category_id: category)
+              end 
+            end 
+            @restaurants = current_user.restaurants
             flash.now[:notice] = "Restaurant Create"
           else
            flash.now[:error] = "Restaurant not Create"
@@ -47,6 +44,11 @@ class RestaurantsController < ApplicationController
       respond_to do |format|
         format.js do 
           if @restaurant.update(restaurant_params) 
+              params[:restaurant][:category_ids].each do |category|
+                if category.present?
+                  @restaurant.restaurant_categories.create(category_id: category)
+                end
+              end 
             @restaurants = current_user.restaurants
             flash.now[:notice] = "Restaurant Update"
           else
@@ -67,23 +69,17 @@ class RestaurantsController < ApplicationController
       end 
   end 
 
-#   def google_map(center)
-#   "https://maps.googleapis.com/maps/api/staticmap?center=#{center}&size=300x300&zoom=17"
-# end
+  def image 
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    authorize! :read, @restaurant 
 
-  # def search
-  #   q = params[:q].downcase
-  #   @restaurant = Restaurant.where("restaurant.name" "%#{q}%").limit(5)
-  # end
-
-
+    respond_to do |format|
+      format.js{}
+    end 
+  end 
   private 
-
-  #  def force_json
-  #   request.format = :json
-  # end
-
   def restaurant_params 
     params.require(:restaurant).permit(:name, :Description, :image, :email, :contact_number, :full_address, images: [], videos: [])
   end 
 end
+# , :latitude, :longitude

@@ -31,9 +31,18 @@
 	</div> 
 
 	<div class="mb-3">
-  		<%=form.label :full_address, class:"form-label" %>
+  		<%=form.label :full_address, class:"form-label" , id:"pac-input"%>
 		<%= form.text_field :full_address ,class:"form-control" %>
 	</div> 
+	<div class="mb-3">
+		<%=form.label :latitude , class:"form-label" %>
+		<%= form.text_field :latitude ,class:"form-control" %>
+	</div>
+
+	<div class="mb-3">
+		<%=form.label :longitude , class:"form-label" %>
+		<%= form.text_field :longitude ,class:"form-control" %>
+	</div>
 
 	<div class="mb-3">
 		<%=form.label :images , class:"form-label" %>
@@ -45,6 +54,11 @@
 		<%= form.file_field :videos ,class:"form-control", multiple: true %>
 	</div>
 
+	<div class="mb-3">
+		<%= form.label :categories %>
+		<%= form.select :category_ids , Category.pluck(:name, :id), {:prompt => "please  seleect" }, class:"form-control", multiple: true %>
+	</div>
+	
 	<div class="mb-3">
 		<%= form.submit  %>
 	</div> 

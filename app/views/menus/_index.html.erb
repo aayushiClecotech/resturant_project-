@@ -1,0 +1,17 @@
+<% @restaurant.menus.each do |menu| %>
+  <div id="menu-show<%= menu.id %>">
+    <b>Title: </b><%= menu.title %><br>
+    <b>Decription :</b><%= menu.description %><br>
+    <b>Menu :</b><%= menu.price %><br>
+    <% menu.images.each do |image| %>
+        <% if menu.images.attached? %>
+          <%= image_tag image, style:"height: 100px; width: 200px;" %>
+        <% end %>
+    <% end %>
+    <br><br>
+    <%= link_to "edit menu", edit_restaurant_menu_path(@restaurant, menu.id), class:"btn btn-success btn-sm"%>
+    <%= link_to "Delete menu", restaurant_menu_path(@restaurant, menu.id),remote: true, method: :delete,class:"btn btn-success btn-sm" %>
+    <hr><br>
+  </div>
+<% end %> 
+<%= link_to "Add Menu", new_restaurant_menu_path(@restaurant),remote: true, class:"btn btn-success btn-sm" %>

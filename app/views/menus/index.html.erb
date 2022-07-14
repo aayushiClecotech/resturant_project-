@@ -1,0 +1,62 @@
+<style type="text/css">
+  .menu-box{
+    height: 500px;
+    width:  400px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+  }
+  .menu-box-images{
+    margin-left: 20px;
+  }
+  .box-title{
+    margin-left: 10px;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="menu-box">
+  <h3 style="text-align: center; margin-top: 20px;">Menu Card </h3>
+<div id="menu-form1">
+  <% @restaurant.menus.each do |menu| %>
+    <div id="menu-show<%= menu.id %>">
+      <div class="menu-box-images">
+        <% menu.images.each do |image| %>
+          <% if menu.images.attached? %>
+              <%= image_tag image, style:"height: 100px; width: 100px; margin-top: 10px; margin-left: 10px;", class:"img-fluid rounded-circle border border-light border-1" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="box-title">
+        <b>Title: </b><%= menu.title %><br>
+        <b>Decription :</b><%= menu.description %><br>
+        <b>Menu :</b><%= menu.price %><br>
+      <br><br>
+      <%= link_to "edit menu", edit_restaurant_menu_path(@restaurant, menu.id),  class:"btn btn-warning btn-sm" %>
+      <%= link_to "Delete menu", restaurant_menu_path(@restaurant, menu.id),remote: true,method: :delete, class:"btn btn-warning btn-sm" %>
+      </div>
+      <br>
+    </div>
+  <% end %> 
+  <br><br>
+  <%= link_to "Add Menu", "#" , class:"btn btn-warning btn-sm", data: {"toggle": "modal" ,"target": "#myModal"} %>
+  <%#= link_to "Add Menu", new_restaurant_menu_path(@restaurant),remote: true, class:"btn btn-success btn-sm" %> 
+</div> 
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <div id="menu-form">
+            <%= render "form" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

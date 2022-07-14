@@ -9,6 +9,7 @@
     "@rails/webpacker": "5.4.3",
     "bootstrap": "5.0.0-beta2",
     "jquery": "^3.6.0",
+    "stimulus": "^3.0.1",
     "stimulus-autocomplete": "^3.0.2",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",

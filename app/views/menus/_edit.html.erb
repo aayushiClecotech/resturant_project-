@@ -1,0 +1,17 @@
+<%= form_for([ @restaurant , @menu ], remote: true) do  |form| %>
+    
+  	<%= form.label :Title, class:"form-label" %>
+  	<%= form.text_field :title, class:"form-control" %>
+
+  	<%= form.label :Description, class:"form-label" %>
+  	<%= form.text_field :description, class:"form-control" %>
+
+    <%= form.label :price, class:"form-label" %>
+    <%= form.text_field :price, class:"form-control" %> 
+
+     <%= form.label :images, class:"form-label" %>
+    <%= form.file_field :images, class:"form-control", multiple: true %> 
+
+
+    <%= form.submit %>
+<% end %>
