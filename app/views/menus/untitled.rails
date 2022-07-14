@@ -1,0 +1,47 @@
+<tbody id="menus" data-url="<%= sort_menus_path %>">
+  <div class="menu-box">
+    <% @restaurant.menus.each do |menu| %>
+      <%= content_tag :tr, id: dom_id(menu), class: dom_class(menu) do %>
+          <div id="menu-show<%= menu.id %>">
+            <div class="card" id="card1" style="margin-top: 20px; height: 130px;">
+              <div class="row">
+                  <div class="col-2">
+                    <% menu.images.first(1).each do |image| %>
+                      <% if menu.images.attached? %>
+                       <td class='handle'><%= image_tag image, style:"height: 100px; width: 100px; margin-top: 20px;  margin-left: 20px;", class:"img-fluid rounded-circle border border-dark border-2" %></td>
+                      <% end %>
+                     <% end %>
+                  </div>
+                  <div class="col-6">
+                  <td><div class="box-title">
+                      <b><%= menu.title %></b><br>
+                      <b><%= menu.description %></b><br>
+                      <b><%= menu.price %></b>
+                    </div></td>
+                  </div>
+                  <div class="col-4">
+                    <div class="row">
+                      <div class="col-2">
+                        <%#= link_to "edit menu", edit_restaurant_menu_path(@restaurant, menu.id),  class:"btn btn-dark btn-sm" %>
+                        <td><button class="button button1" style="margin-top:40px;"><%= link_to edit_restaurant_menu_path(@restaurant, menu.id) , remote: true do %>
+                          <span class="glyphicon glyphicon-edit"  style="color:orange; width: 30px;"></span>
+                        <% end %>
+                        </button></td>
+                      </div> 
+
+                      <div class="col-2">
+                        <%#= link_to "Delete menu", restaurant_menu_path(@restaurant, menu.id),remote: true,method: :delete, class:"btn btn-dark btn-sm" %>
+                        <td><button class="button button1" style="margin-top:40px;"><%= link_to restaurant_menu_path(@restaurant, menu.id),method: :delete, remote: true do %>
+                        <span class="glyphicon glyphicon-trash" style="color:orange; width: 30px;"></span>
+                        <% end %>
+                        </button></td>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div> 
+</tbody>

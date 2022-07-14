@@ -1,7 +1,8 @@
 class MenusController < ApplicationController
   def index
     @restaurant = Restaurant.find(params[:restaurant_id])
-    @menu = Menu.all
+    @menu = Menu.all 
+    @menus = Menu.order(:position)
   end 
 
   def show 
@@ -56,6 +57,14 @@ class MenusController < ApplicationController
         # redirect_to restaurant_menus_path(@restaurant)
       end 
   end 
+
+  def sort
+  # accept the post with all the items to sort.
+    params[:menu].each_with_index do |id, index|
+      Menu.where(id: id).update_all(position: index + 1)
+    end
+    head :ok
+  end
 
   private 
     def menu_params 

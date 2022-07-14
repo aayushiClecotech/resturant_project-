@@ -1,7 +1,27 @@
- /*.top-right1 {
-   position: absolute;
-   top : 30;
-    right: 70px;
-    margin-top: 20px;
+.menu-box{
+    height: auto;
+    width:  800px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 15px;
+    /*background-image: url('background signup.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    /*background-color: rgba(0,0,0,.5);*/
+
+  }
+  /*.menu-box-images{
+    margin-top: 20px; 
+    height: 130;
+    width: 500px;
 
   }*/
+  .box-title{
+    margin-top: 40px;
+
+  }
+  .ui-sortable-handle{
+  cursor: pointer;
+}

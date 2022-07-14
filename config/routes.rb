@@ -34,6 +34,12 @@ Rails.application.routes.draw do
     resources :restaurants do
       resources :reviews 
     end   
+
+    resources :menus do
+    collection  do
+      patch :sort
+    end
+end
     mount Sidekiq::Web => '/sidekiq'
 
 end

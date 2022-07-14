@@ -75,3 +75,5 @@ gem 'activeadmin'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
+gem 'font-awesome-sass', '~> 5.6', '>= 5.6.1'
+gem "acts_as_list"

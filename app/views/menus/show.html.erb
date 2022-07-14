@@ -1,3 +1,4 @@
+<div class="modal-body">
 <% @restaurant.menus.each do |menu| %>
   <% menu.images.each do |image| %>
     <% if menu.images.attached? %>
@@ -5,16 +6,9 @@
     <% end %>
   <% end %>
 <% end %>
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          
-        </div>
-      </div>
-    </div>
-  </div>
+  
+</div>
+
+
+
 

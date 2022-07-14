@@ -10,9 +10,12 @@ import "channels"
 import '../js/bootstrap_js_files.js' 
 import "../js/restaurants.js"
 require("jquery")
+require("jquery-ui/ui/widget")
+require("jquery-ui/ui/widgets/sortable")
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import "controllers"
+// import "controllers"
+
