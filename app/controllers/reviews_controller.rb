@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  def index
+  def index 
      @restaurant = Restaurant.find(params[:restaurant_id])
      @reviews = Review.all
       respond_to do |format|

@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @restaurants = Restaurant
         .search(params[:search])
         .order(:created_at => :desc)
-    else 
+    else
       @restaurants = Restaurant
         .joins('LEFT JOIN reviews ON restaurants.id = reviews.restaurant_id')
         .group('restaurants.id')

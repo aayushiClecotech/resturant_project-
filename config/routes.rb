@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'menu/index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+    
     get 'reviews/index'
     get 'home/index'
     get 'restaurants/index'

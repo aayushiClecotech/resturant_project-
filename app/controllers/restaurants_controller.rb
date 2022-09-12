@@ -1,6 +1,5 @@
 class RestaurantsController < ApplicationController
   before_action :force_json, only: :search  
-  load_and_authorize_resource
   
   def index 
     @restaurants = current_user.restaurants 
@@ -21,11 +20,7 @@ class RestaurantsController < ApplicationController
       respond_to do |format|
         format.js do 
           if @restaurant.save 
-            params[:restaurant][:category_ids].each do |category|
-              if category.present?
-                @restaurant.restaurant_categories.create(category_id: category)
-              end 
-            end 
+            RestaurantCreator.new(category_ids: params[:restaurant][:category_ids], restaurant: @restaurant).create_category
             @restaurants = current_user.restaurants
             flash.now[:notice] = "Restaurant Create"
           else
@@ -44,11 +39,7 @@ class RestaurantsController < ApplicationController
       respond_to do |format|
         format.js do 
           if @restaurant.update(restaurant_params) 
-              params[:restaurant][:category_ids].each do |category|
-                if category.present?
-                  @restaurant.restaurant_categories.create(category_id: category)
-                end
-              end 
+            RestaurantCreator.new(category_ids: params[:restaurant][:category_ids], restaurant: @restaurant).create_category
             @restaurants = current_user.restaurants
             flash.now[:notice] = "Restaurant Update"
           else
@@ -72,11 +63,11 @@ class RestaurantsController < ApplicationController
   def image 
     @restaurant = Restaurant.find(params[:restaurant_id])
     authorize! :read, @restaurant 
-
     respond_to do |format|
       format.js{}
     end 
   end 
+  
   private 
   def restaurant_params 
     params.require(:restaurant).permit(:name, :Description, :image, :email, :contact_number, :full_address, images: [], videos: [])

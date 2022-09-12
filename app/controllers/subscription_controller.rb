@@ -31,7 +31,7 @@ class SubscriptionController < ApplicationController
     end
   end
 
-  def success 
+  def success
     @plans = Stripe::Plan.list.data
   end 
 
