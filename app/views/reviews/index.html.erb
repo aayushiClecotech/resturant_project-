@@ -1,5 +1,4 @@
 <% @restaurant.reviews.each do |review| %>
-<% debugger %>
 <div id="show-reviews<%= review.id %>">
   <% if review.title.present? %>
    <% if review.user.image.attached? %>
