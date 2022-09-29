@@ -22,7 +22,7 @@
 						    	<%# average = reviews/restaurant.reviews.count %>
 									<div class="review-box">
 										<div style="height:20px; width: 50px; float: right; background-color: darkgreen; border-radius: 5px; margin-top: 0px;">
-						     			<span style="color:white; margin-left: 2px;"><%=restaurant.reviews.average(:rating)%></span>
+						     			<span style="color:white; margin-left: 2px;"><%=restaurant.reviews.average(:rating).round(2)%></span>
 						     			<span class="glyphicon glyphicon-star" style="color:white; "></span>
 						     		</div>
 						     	</div>
